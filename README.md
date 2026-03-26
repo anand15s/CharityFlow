@@ -13,7 +13,7 @@ CharityFlow is a comprehensive nonprofit operating system replacing 6+ disconnec
 
 ## 🎯 Problem
 
-Over 200,000 small US nonprofits lack affordable tools purpose-built for their needs. They cobble together QuickBooks, spreadsheets, and manual processes — none of which talk to each other. This leads to:
+Over 200,000 small US nonprofits lack affordable tools purpose-built for their needs. They cobble together legacy accounting tools, spreadsheets, and manual processes — none of which talk to each other. This leads to:
 - Missed tax deadlines & jeopardized 501(c)(3) status
 - Poor donor retention & failed fundraising events
 - Audit nightmares & compliance gaps
@@ -36,7 +36,7 @@ Over 200,000 small US nonprofits lack affordable tools purpose-built for their n
 - **Frontend:** Next.js + Tailwind CSS (responsive web app — PC, Mac, mobile)
 - **Backend:** Node.js + Express
 - **Database:** MongoDB
-- **Payments:** Stripe
+- **Payments:** payment processors
 - **Hosting:** AWS / Vercel
 
 ## 📁 Project Structure
@@ -83,9 +83,9 @@ CharityFlow/
 ## 🏆 Competitive Advantage
 
 No competitor offers this integrated approach:
-- **QuickBooks** ($38-275/mo) — requires accounting expertise, no Form 990 automation
-- **Sage Intacct** ($10K+/yr) — enterprise pricing, $15-75K implementation
-- **Xero** ($11-58/mo) — no nonprofit features, needs add-ons
+- **legacy accounting tools** ($38-275/mo) — requires accounting expertise, no Form 990 automation
+- **enterprise nonprofit solutions** ($10K+/yr) — enterprise pricing, $15-75K implementation
+- **general-purpose accounting software** ($11-58/mo) — no nonprofit features, needs add-ons
 - **CharityFlow** ($79/mo) — all-in-one, plain language, zero accounting knowledge needed
 
 ## 🗺️ Roadmap

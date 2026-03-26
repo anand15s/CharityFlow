@@ -34,11 +34,11 @@ Small nonprofits spend on average $3,500/year on accounting software and still s
 
 | Competitor | Type | Key Differentiator |
 | --- | --- | --- |
-| Bloomerang | Direct | CharityFlow automates tax filings, which Bloomerang does not |
-| Aplos | Direct | CharityFlow emphasizes automation of tax filings |
-| QuickBooks Nonprofit | Indirect | CharityFlow targets smaller nonprofits with specific 990 automation |
-| Sage Intacct | Indirect | Enterprise pricing ($10K+/yr), complex implementation |
-| Xero | Indirect | No nonprofit features, needs add-ons |
+| donor management platforms | Direct | CharityFlow automates tax filings, which donor management platforms does not |
+| nonprofit accounting alternatives | Direct | CharityFlow emphasizes automation of tax filings |
+| legacy accounting tools Nonprofit | Indirect | CharityFlow targets smaller nonprofits with specific 990 automation |
+| enterprise nonprofit solutions | Indirect | Enterprise pricing ($10K+/yr), complex implementation |
+| general-purpose accounting software | Indirect | No nonprofit features, needs add-ons |
 
 ---
 
@@ -126,7 +126,7 @@ Small nonprofits spend on average $3,500/year on accounting software and still s
 - **Frontend:** Next.js + Tailwind CSS
 - **Backend:** Node.js + Express
 - **Database:** MongoDB
-- **Payments:** Stripe
+- **Payments:** payment processors
 - **Hosting:** AWS / Vercel
 
 ---
@@ -134,7 +134,7 @@ Small nonprofits spend on average $3,500/year on accounting software and still s
 ## Risk Analysis
 
 ### Top Risks
-1. **Competitive Pressure** (High) — Established players like QuickBooks
+1. **Competitive Pressure** (High) — Established players like legacy accounting tools
 2. **Platform Security** (High) — Sensitive financial data requires top security
 3. **Regulatory Compliance** (High) — Form 990 automation requires IRS compliance
 4. **Workflow Integration** (Medium) — Diverse nonprofit operations
@@ -154,7 +154,7 @@ Small nonprofits spend on average $3,500/year on accounting software and still s
 | Month | Focus | Key Tasks |
 | --- | --- | --- |
 | Month 1 | Foundation | Register LLC, design brand, set up accounting, draft policies |
-| Month 2 | Build | Develop MVP, set up cloud infra, integrate Stripe, hire team |
+| Month 2 | Build | Develop MVP, set up cloud infra, integrate payment processors, hire team |
 | Month 3 | Launch | Launch app, SEO, social media, beta feedback, press outreach |
 
 ---

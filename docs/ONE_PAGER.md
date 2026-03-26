@@ -13,7 +13,7 @@ Nonprofit Management Software
 United States
 
 ## Problem
-Over 200,000 small US nonprofits (under $500K budget) lack affordable tools purpose-built for their needs. They cobble together QuickBooks, spreadsheets, and manual processes to manage donations, expenses, tax compliance, donor relationships, events, and board governance — none of which talk to each other. This leads to missed tax deadlines, jeopardized 501(c)(3) status, poor donor retention, failed fundraising events, and audit nightmares.
+Over 200,000 small US nonprofits (under $500K budget) lack affordable tools purpose-built for their needs. They cobble together legacy accounting tools, spreadsheets, and manual processes to manage donations, expenses, tax compliance, donor relationships, events, and board governance — none of which talk to each other. This leads to missed tax deadlines, jeopardized 501(c)(3) status, poor donor retention, failed fundraising events, and audit nightmares.
 
 ## Solution
 CharityFlow is the first all-in-one nonprofit operating system that replaces 6+ disconnected tools with a single platform built for people who don't know accounting. Core capabilities include:
@@ -49,8 +49,8 @@ To democratize nonprofit management by giving every small organization the same 
 ## Competitors
 | Competitor | Pricing | Key Gap |
 |-----------|---------|--------|
-| QuickBooks | $38-275/mo | No 990 automation, requires accounting knowledge |
-| Sage Intacct | $10K+/yr | Enterprise only, $15-75K implementation |
-| Xero | $11-58/mo | No nonprofit features |
-| Bloomerang | Varies | No accounting/tax features |
-| Aplos | Varies | No automated Form 990 |
+| legacy accounting tools | $38-275/mo | No 990 automation, requires accounting knowledge |
+| enterprise nonprofit solutions | $10K+/yr | Enterprise only, $15-75K implementation |
+| general-purpose accounting software | $11-58/mo | No nonprofit features |
+| donor management platforms | Varies | No accounting/tax features |
+| nonprofit accounting alternatives | Varies | No automated Form 990 |

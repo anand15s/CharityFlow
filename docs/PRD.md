@@ -103,7 +103,7 @@ Small to mid-size US nonprofits with annual budgets under $5M — including comm
 - **Frontend:** Next.js + Tailwind CSS
 - **Backend:** Node.js + Express
 - **Database:** MongoDB
-- **Payments:** Stripe
+- **Payments:** payment processors
 - **Hosting:** AWS / Vercel
 
 ---
