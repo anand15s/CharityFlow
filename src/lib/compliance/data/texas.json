@@ -1,0 +1,43 @@
+{
+  "state": "Texas",
+  "stateCode": "TX",
+  "registration": {
+    "required": false,
+    "agency": "Attorney General (limited exceptions)",
+    "exceptions": ["Law enforcement telephone solicitors", "Veterans organizations", "Public safety organizations"],
+    "exceptionFee": 50,
+    "exceptionBond": 50000
+  },
+  "taxFiling": {
+    "noStateTaxFiling": true,
+    "privateFoundationsMustFile990PF": true,
+    "form990PFSentToAG": true
+  },
+  "secretaryOfState": {
+    "annualReport": false,
+    "updateFrequency": "Every 4 years",
+    "form": "Form 802",
+    "fee": 0
+  },
+  "religiousExemption": {
+    "exempt": true,
+    "details": "All nonprofits exempt from state registration (except specific exceptions)"
+  },
+  "taxExemptions": {
+    "salesTax": true,
+    "franchiseTax": true,
+    "hotelOccupancyTax": true,
+    "applicationForm": "AP-205",
+    "agency": "Texas Comptroller"
+  },
+  "auditThresholds": {
+    "noStateAuditRequirement": true
+  },
+  "recentUpdates": [
+    { "date": "2025-05-01", "description": "HB 4752 — Property tax exemption for charitable gift distribution orgs (passed House, pending Senate)" }
+  ],
+  "solicitation": {
+    "localRules": "City-level restrictions may apply (e.g., Austin has time/location rules)",
+    "noGeneralPermitRequired": true
+  }
+}

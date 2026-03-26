@@ -1,0 +1,41 @@
+{
+  "state": "California",
+  "stateCode": "CA",
+  "registration": {
+    "required": true,
+    "agency": "Attorney General (Registry of Charities)",
+    "form": "RRF-1",
+    "initialForm": "CT-1",
+    "renewalDeadline": "4 months + 15 days after fiscal year end",
+    "fee": { "under50k": 0, "50kTo100k": 25, "100kTo250k": 50, "250kTo1m": 75, "1mTo10m": 150, "10mTo50m": 225, "over50m": 300 }
+  },
+  "taxFiling": {
+    "ftbForm199Required": true,
+    "ftbForm199Threshold": 50000,
+    "ftbForm199NAvailable": true,
+    "form109ForUBIT": true
+  },
+  "secretaryOfState": {
+    "biennial": true,
+    "form": "SI-100",
+    "fee": 20
+  },
+  "religiousExemption": {
+    "exempt": false,
+    "partial": true,
+    "details": "Must file RRF-1 but lower scrutiny; exempt from some solicitation rules"
+  },
+  "auditThresholds": {
+    "reviewRequired": 500000,
+    "auditRequired": 2000000
+  },
+  "recentUpdates": [
+    { "date": "2026-01-01", "description": "AG Online Filing System launching — mandatory for new registrations" },
+    { "date": "2025-01-07", "description": "Blanket extension for renewals due Jan 7 2025 - Apr 30 2026" }
+  ],
+  "solicitation": {
+    "localRules": "Los Angeles requires Notice of Intention 15 business days prior to events",
+    "commercialFundraiser": "CT-1CF registration required",
+    "raffles": "CT-NRP-1 registration required"
+  }
+}

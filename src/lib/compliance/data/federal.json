@@ -1,0 +1,31 @@
+{
+  "jurisdiction": "Federal (IRS)",
+  "form990Versions": {
+    "990N": { "name": "e-Postcard", "threshold": 50000, "description": "For gross receipts normally <= $50,000" },
+    "990EZ": { "name": "Short Form", "minThreshold": 50000, "maxThreshold": 200000, "maxAssets": 500000 },
+    "990": { "name": "Full Form", "threshold": 200000, "orAssets": 500000 },
+    "990PF": { "name": "Private Foundation", "description": "For all private foundations regardless of size" }
+  },
+  "filingDeadline": "15th day of 5th month after fiscal year end",
+  "extension": "6 months via Form 8868",
+  "electronicFiling": { "required": true, "effectiveDate": "2025-01-01" },
+  "autoRevocation": {
+    "trigger": "3 consecutive years of non-filing",
+    "consequence": "Automatic revocation of tax-exempt status"
+  },
+  "ubit": {
+    "form": "990-T",
+    "threshold": 1000,
+    "description": "Unrelated Business Income Tax for income >= $1,000"
+  },
+  "publicSupportTest": {
+    "publicCharity": "Must receive > 33.3% support from public sources over 5-year rolling period",
+    "factsAndCircumstances": "10% minimum with additional factors",
+    "dangerZone": "Below 33.3% risks reclassification to private foundation"
+  },
+  "lobbyingLimits": {
+    "501h": "Elect 501(h) for specific dollar limits based on budget",
+    "substantialPart": "Without 501(h), 'no substantial part' of activities can be lobbying",
+    "politicalActivity": "Absolutely prohibited for 501(c)(3) organizations"
+  }
+}

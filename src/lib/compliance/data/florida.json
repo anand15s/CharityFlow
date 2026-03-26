@@ -1,0 +1,30 @@
+{
+  "state": "Florida",
+  "stateCode": "FL",
+  "registration": {
+    "required": true,
+    "agency": "Department of Agriculture and Consumer Services",
+    "statute": "Chapter 496 — Solicitation of Contributions Act",
+    "renewalDeadline": "Annual by registration anniversary",
+    "fee": { "flat": 10 },
+    "mandatoryDisclosure": "Required on ALL solicitation materials per Chapter 496"
+  },
+  "religiousExemption": {
+    "exempt": false,
+    "details": "Religious organizations NOT exempt — must register under Chapter 496"
+  },
+  "auditThresholds": {
+    "reviewRequired": 200000,
+    "auditRequired": 500000,
+    "details": "Financial statement required above $200K contributions"
+  },
+  "recentUpdates": [
+    { "date": "2025-07-01", "description": "SB 700 — Foreign Donor Ban effective July 1, 2025. All registered charities must attest they do not accept donations from China, Russia, Iran, N. Korea, Cuba, Venezuela, Syria" },
+    { "date": "2025-01-01", "description": "Updated Chapter 496 disclosure text requirements" }
+  ],
+  "solicitation": {
+    "mandatoryDisclosureText": true,
+    "foreignDonorAttestation": true,
+    "professionalSolicitorBond": 50000
+  }
+}

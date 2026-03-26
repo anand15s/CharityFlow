@@ -1,0 +1,31 @@
+{
+  "state": "New York",
+  "stateCode": "NY",
+  "registration": {
+    "required": true,
+    "agency": "Attorney General Charities Bureau",
+    "initialForm": "CHAR410",
+    "renewalForm": "CHAR500",
+    "renewalDeadline": "4 months + 15 days after fiscal year end",
+    "fee": { "under25k": 0, "25kTo50k": 25, "50kTo100k": 50, "100kTo250k": 75, "250kTo500k": 100, "500kTo1m": 150, "over1m": 250 },
+    "dualFiling": "CHAR500 also filed with NY Dept of State for revenue > $250K"
+  },
+  "religiousExemption": {
+    "exempt": true,
+    "statute": "EPTL §8-1.4",
+    "details": "Religious organizations exempt from CHAR410/CHAR500 registration"
+  },
+  "auditThresholds": {
+    "reviewRequired": 250000,
+    "auditRequired": 750000,
+    "details": "CPA review for contributions > $250K; full audit for > $750K"
+  },
+  "recentUpdates": [
+    { "date": "2025-06-01", "description": "Updated CHAR500 form with enhanced governance disclosure requirements" }
+  ],
+  "solicitation": {
+    "registrationRequired": true,
+    "professionalFundraiserRegistration": true,
+    "fundraisingCounselRegistration": true
+  }
+}

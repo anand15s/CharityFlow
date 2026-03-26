@@ -1,0 +1,30 @@
+{
+  "state": "Illinois",
+  "stateCode": "IL",
+  "registration": {
+    "required": true,
+    "agency": "Attorney General Charitable Trust Bureau",
+    "statute": "Charitable Trust Act + Solicitation for Charity Act",
+    "form": "AG990-IL",
+    "fee": 15,
+    "renewalDeadline": "6 months after fiscal year end"
+  },
+  "religiousExemption": {
+    "exempt": false,
+    "details": "Religious organizations NOT exempt — must register with AG under Charitable Trust Act"
+  },
+  "auditThresholds": {
+    "reviewRequired": 300000,
+    "auditRequired": 500000,
+    "details": "CPA review at $300K; full audit at $500K contributions"
+  },
+  "recentUpdates": [
+    { "date": "2025-09-01", "description": "IL AG launched online filing portal — paper filings no longer accepted" },
+    { "date": "2025-01-01", "description": "Updated AG990-IL form with new governance questions" }
+  ],
+  "solicitation": {
+    "registrationRequired": true,
+    "onlinePortal": true,
+    "professionalFundraiserRegistration": true
+  }
+}
