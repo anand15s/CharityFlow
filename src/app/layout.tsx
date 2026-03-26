@@ -1,12 +1,9 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
 import './globals.css'
 
-const inter = Inter({ subsets: ['latin'] })
-
 export const metadata: Metadata = {
-  title: 'CharityFlow - Nonprofit Operating System',
-  description: 'The all-in-one platform for small nonprofits to manage finances, compliance, donors, and events — in plain language.',
+  title: 'CharityFlow — Nonprofit Operating System',
+  description: 'The all-in-one platform that replaces 6+ tools for small nonprofits. Manage finances, compliance, donors, events, and board governance — all in plain language.',
 }
 
 export default function RootLayout({
@@ -16,7 +13,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body>{children}</body>
     </html>
   )
 }

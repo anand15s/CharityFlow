@@ -1,0 +1,246 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ─── ORGANIZATION ───────────────────────────────────────────
+model Organization {
+  id              String   @id @default(cuid())
+  name            String
+  ein             String?  @unique
+  nonprofitType   String   @default("501c3") // 501c3, 501c4, 501c6, etc.
+  state           String
+  county          String?
+  city            String
+  zipCode         String
+  annualBudget    Float    @default(0)
+  fiscalYearStart Int      @default(1) // Month (1-12)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  members         Member[]
+  transactions    Transaction[]
+  donors          Donor[]
+  campaigns       Campaign[]
+  events          Event[]
+  meetings        Meeting[]
+  complianceTasks ComplianceTask[]
+  form990s        Form990[]
+  auditLogs       AuditLog[]
+  notifications   Notification[]
+}
+
+// ─── MEMBERS & ROLES ────────────────────────────────────────
+model Member {
+  id             String       @id @default(cuid())
+  email          String
+  name           String
+  role           MemberRole   @default(VOLUNTEER)
+  orgId          String
+  org            Organization @relation(fields: [orgId], references: [id])
+  notifyEmail    Boolean      @default(true)
+  notifyPush     Boolean      @default(true)
+  notifySms      Boolean      @default(false)
+  dndStart       String?      // "22:00"
+  dndEnd         String?      // "08:00"
+  createdAt      DateTime     @default(now())
+
+  @@unique([email, orgId])
+}
+
+enum MemberRole {
+  ADMIN
+  TREASURER
+  EXECUTIVE_DIRECTOR
+  BOARD_MEMBER
+  STAFF
+  VOLUNTEER
+  AUDITOR
+}
+
+// ─── TRANSACTIONS (Money Categories) ────────────────────────
+model Transaction {
+  id            String          @id @default(cuid())
+  orgId         String
+  org           Organization    @relation(fields: [orgId], references: [id])
+  date          DateTime
+  description   String
+  amount        Float
+  type          TransactionType
+  category      String          // "Money Category" - plain language
+  fund          String?         // Restricted / Unrestricted
+  eventId       String?
+  event         Event?          @relation(fields: [eventId], references: [id])
+  donorId       String?
+  donor         Donor?          @relation(fields: [donorId], references: [id])
+  bankMatched   Boolean         @default(false) // "Match Your Bank"
+  receiptUrl    String?
+  functional    FunctionalType  @default(PROGRAM)
+  immutable     Boolean         @default(true)  // Audit-grade: cannot be deleted
+  createdAt     DateTime        @default(now())
+}
+
+enum TransactionType {
+  DONATION
+  GRANT
+  EXPENSE
+  IN_KIND
+  EVENT_REVENUE
+  EVENT_EXPENSE
+  MEMBERSHIP_DUES
+  INVESTMENT_INCOME
+  OTHER
+}
+
+enum FunctionalType {
+  PROGRAM
+  ADMIN
+  FUNDRAISING
+}
+
+// ─── DONORS (Donor CRM) ────────────────────────────────────
+model Donor {
+  id               String        @id @default(cuid())
+  orgId            String
+  org              Organization  @relation(fields: [orgId], references: [id])
+  name             String
+  email            String?
+  phone            String?
+  address          String?
+  totalGiven       Float         @default(0)
+  firstGiftDate    DateTime?
+  lastGiftDate     DateTime?
+  donorType        String        @default("individual") // individual, corporate, foundation, daf
+  notes            String?
+  transactions     Transaction[]
+  taxReceipts      TaxReceipt[]
+  createdAt        DateTime      @default(now())
+}
+
+model TaxReceipt {
+  id          String   @id @default(cuid())
+  donorId     String
+  donor       Donor    @relation(fields: [donorId], references: [id])
+  year        Int
+  totalAmount Float
+  pdfUrl      String?
+  sentAt      DateTime?
+  createdAt   DateTime @default(now())
+}
+
+// ─── CAMPAIGNS & FUNDRAISING ────────────────────────────────
+model Campaign {
+  id          String       @id @default(cuid())
+  orgId       String
+  org         Organization @relation(fields: [orgId], references: [id])
+  name        String
+  goal        Float
+  raised      Float        @default(0)
+  startDate   DateTime
+  endDate     DateTime?
+  type        String       @default("general") // general, peer-to-peer, event
+  status      String       @default("active")
+  shareUrl    String?
+  createdAt   DateTime     @default(now())
+}
+
+// ─── EVENTS (Local Event Success Engine) ────────────────────
+model Event {
+  id           String        @id @default(cuid())
+  orgId        String
+  org          Organization  @relation(fields: [orgId], references: [id])
+  name         String
+  date         DateTime
+  venue        String?
+  venueAddress String?
+  budget       Float         @default(0)
+  actualCost   Float         @default(0)
+  revenue      Float         @default(0)
+  attendees    Int           @default(0)
+  permits      Json?         // Required permits checklist
+  vendors      Json?         // Vendor list with discounts
+  status       String        @default("planning")
+  transactions Transaction[]
+  createdAt    DateTime      @default(now())
+}
+
+// ─── BOARD GOVERNANCE ───────────────────────────────────────
+model Meeting {
+  id           String       @id @default(cuid())
+  orgId        String
+  org          Organization @relation(fields: [orgId], references: [id])
+  title        String
+  date         DateTime
+  attendees    Json         // Array of member IDs
+  minutes      String?      // Rich text minutes
+  votes        Json?        // Array of {motion, result, yea, nay, abstain}
+  documents    Json?        // Array of {name, url}
+  status       String       @default("scheduled")
+  createdAt    DateTime     @default(now())
+}
+
+// ─── COMPLIANCE ENGINE ──────────────────────────────────────
+model ComplianceTask {
+  id          String       @id @default(cuid())
+  orgId       String
+  org         Organization @relation(fields: [orgId], references: [id])
+  title       String
+  description String?
+  dueDate     DateTime
+  category    String       // tax, state-filing, solicitation, audit
+  status      String       @default("pending")
+  priority    String       @default("medium")
+  jurisdiction String      // federal, state, county, city
+  regulation  String?      // Reference to specific regulation
+  completedAt DateTime?
+  createdAt   DateTime     @default(now())
+}
+
+// ─── FORM 990 ───────────────────────────────────────────────
+model Form990 {
+  id          String       @id @default(cuid())
+  orgId       String
+  org         Organization @relation(fields: [orgId], references: [id])
+  year        Int
+  formType    String       // 990-N, 990-EZ, 990
+  status      String       @default("draft")
+  data        Json?        // All form fields
+  pdfUrl      String?
+  filedAt     DateTime?
+  createdAt   DateTime     @default(now())
+}
+
+// ─── AUDIT LOG (Immutable) ──────────────────────────────────
+model AuditLog {
+  id          String       @id @default(cuid())
+  orgId       String
+  org         Organization @relation(fields: [orgId], references: [id])
+  action      String       // create, update, delete, login, export, etc.
+  entity      String       // transaction, donor, meeting, etc.
+  entityId    String?
+  userId      String
+  details     Json?
+  ipAddress   String?
+  timestamp   DateTime     @default(now())
+
+  @@index([orgId, timestamp])
+}
+
+// ─── NOTIFICATIONS ──────────────────────────────────────────
+model Notification {
+  id          String       @id @default(cuid())
+  orgId       String
+  org         Organization @relation(fields: [orgId], references: [id])
+  userId      String
+  title       String
+  message     String
+  type        String       // deadline, transaction, meeting, compliance, donor
+  priority    String       @default("normal")
+  read        Boolean      @default(false)
+  actionUrl   String?
+  createdAt   DateTime     @default(now())
+}
