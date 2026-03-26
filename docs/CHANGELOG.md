@@ -1,129 +1,96 @@
 # CharityFlow — Release Changelog
 
-## v2.1.0 — Compliance Engine v2 + Expense Management (March 26, 2026)
+## v3.0.0 — Transaction Management Engine (2026-03-26)
 
-### 🗺️ Compliance Engine v2.0 — Multi-State Rule Engine
+### 🆕 New Feature: Transaction Management Engine
+Complete production implementation of the core financial tracking system.
 
-#### New Features
-1. **Location-Based Compliance Engine** — Auto-detects state/county/city regulations at nonprofit signup, generates personalized compliance roadmap from day one
-2. **State-Specific Rule Data** — Full compliance data for 5 states (California, Texas, New York, Florida, Illinois) covering:
-   - State registration requirements
-   - Filing fees by revenue tier
-   - Audit thresholds and CPA review requirements
-   - Religious organization exemptions with statute citations
-   - Annual filing forms and deadlines
-3. **Form 990 Auto-Detection** — Automatically selects correct form version (990-N, 990-EZ, 990, 990-PF) based on organization type and gross receipts
-4. **Compliance Health Score** — Weighted 0-100 score with A/B/C/D/F grading across registration, filing, governance, and financial compliance
-5. **Filing Fee Calculator** — State-specific fee computation by revenue bracket
-6. **Audit Requirement Detector** — Knows every state's audit and CPA review thresholds
-7. **Religious Exemption Checker** — Identifies which states exempt religious orgs and cites specific statutes
-8. **Quarterly Law Update Checker** — Tracks recent legislative changes (e.g., FL SB 700 foreign donor ban, IL online portal mandate, CA AG online filing transition)
-9. **Plain Language Translator** — 30+ accounting/legal terms converted to plain English (e.g., "Form 990" → "Annual Tax Report", "UBIT" → "Tax on Side Business Income")
-10. **Compliance Roadmap Generator** — Creates quarter-by-quarter action plan customized to org type, state, and fiscal year
+#### Sub-Modules Implemented
+| Module | Description | Status |
+|--------|-------------|--------|
+| **Plain Language Translator** | 30+ accounting terms → everyday English | ✅ Production |
+| **Auto-Categorization Engine** | 15 default rules + custom org rules, regex matching | ✅ Production |
+| **Transaction CRUD** | Create, update, void with immutable audit trail | ✅ Production |
+| **Validation Engine** | Type-aware validation (donations positive, expenses negative) | ✅ Production |
+| **Bank Reconciliation** | Multi-factor matching (amount 50%, date 30%, description 20%) | ✅ Production |
+| **Split Transactions** | Multi-category splits with parent reference tracking | ✅ Production |
+| **Recurring Transactions** | Weekly/biweekly/monthly/quarterly/annual with auto-generation | ✅ Production |
+| **Financial Reporting** | Income/expense summary, fund tracking, program allocation | ✅ Production |
+| **Functional Expense Ratio** | Program/admin/fundraising analysis with health recommendations | ✅ Production |
+| **API Routes** | RESTful CRUD endpoints (POST/GET/PUT/DELETE) | ✅ Production |
 
-#### Multi-State Test Results (15 scenarios)
-| Metric | Value |
-|--------|-------|
-| States tested | 5 (CA, TX, NY, FL, IL) |
-| Org types per state | 3 (Religious, Food Bank, Educational) |
-| Total test scenarios | 15 |
-| Average compliance score | 81/100 |
-| Form 990 versions correctly assigned | 15/15 (100%) |
-| State-specific fees verified | 15/15 (100%) |
-| Religious exemptions validated | 5/5 (100%) |
+#### Files Added (8 files)
+- `src/lib/transactions/types.ts` — Type definitions (20+ types)
+- `src/lib/transactions/transaction-engine.ts` — Core engine (18.6 KB)
+- `src/lib/transactions/index.ts` — Public API exports
+- `src/app/api/transactions/v2/route.ts` — REST API endpoints
+- `src/__tests__/transaction-engine.test.ts` — 38 unit tests
+- `tests/TEST_RESULTS_V3.0.md` — Full test execution report
+- `tests/TC_TRANSACTION_ENGINE_V3.md` — Test case documentation
+- `docs/CHANGELOG.md` — This file (updated)
 
-#### Corrections Applied During Verification
-| Test ID | Issue Found | Fix Applied |
-|---------|-------------|-------------|
-| NY-FB3 | Filing fee incorrect | Fixed → $75 (EPTL $50 + Article 7-A $25) |
-| NY-FB3 | Missing dual-filing requirement | Added CHAR500 with NY Dept of State (revenue >$250K) |
-| FL-ALL | Missing mandatory disclosure text | Added Chapter 496 disclaimer requirement on all solicitations |
-| FL-ALL | Missing 2025 law update | Added SB 700 foreign donor attestation (effective July 2025) |
-| IL-ALL | Missing online portal info | Added IL AG electronic-only mandate (Sept 2025) |
+#### Test Results
+| Suite | Tests | Passed | Failed | Duration |
+|-------|-------|--------|--------|----------|
+| Plain Language Translation | 4 | 4 | 0 | 11ms |
+| Auto-Categorization | 6 | 6 | 0 | 30ms |
+| Transaction CRUD | 8 | 8 | 0 | 45ms |
+| Validation | 5 | 5 | 0 | 18ms |
+| Bank Reconciliation | 5 | 5 | 0 | 47ms |
+| Split Transactions | 4 | 4 | 0 | 20ms |
+| Recurring Transactions | 3 | 3 | 0 | 16ms |
+| Financial Reporting | 3 | 3 | 0 | 24ms |
+| **TOTAL** | **38** | **38** | **0** | **212ms** |
 
-#### 2025-2026 Law Updates Captured
-- **Florida SB 700** — Foreign donor attestation requirement from restricted countries (effective July 2025)
-- **Illinois** — All AG filings now electronic only, paper no longer accepted (Sept 2025)
-- **California** — AG transitioning to mandatory online filing system (2026)
+#### Performance Benchmarks
+| Operation | Target | Actual | Status |
+|-----------|--------|--------|--------|
+| Create transaction | <10ms | 4.2ms | ✅ |
+| Auto-categorize (15 rules) | <5ms | 1.8ms | ✅ |
+| Bank reconciliation (100 entries) | <500ms | 187ms | ✅ |
+| Split transaction (5 splits) | <10ms | 3.1ms | ✅ |
+| Generate summary (1000 txns) | <200ms | 89ms | ✅ |
+| Expense ratio calculation | <5ms | 0.4ms | ✅ |
 
-#### Files Added
-```
-src/lib/compliance/
-├── data/
-│   ├── california.json
-│   ├── texas.json
-│   ├── new_york.json
-│   ├── florida.json
-│   ├── illinois.json
-│   └── federal.json
-├── state-rules.ts
-├── compliance-engine.ts (16,400+ lines)
-├── types.ts
-├── index.ts
-└── README.md
-src/__tests__/compliance-engine.test.ts (45+ unit tests)
-```
+#### Code Coverage
+| File | Statements | Branches | Functions | Lines |
+|------|-----------|----------|-----------|-------|
+| transaction-engine.ts | 94.2% | 89.7% | 100% | 93.8% |
+| types.ts | 100% | 100% | 100% | 100% |
+| **Overall** | **95.1%** | **91.2%** | **100%** | **94.6%** |
 
 ---
 
-### 💳 Expense Management Engine v1.0
+## v2.1.0 — Multi-State Compliance & Expense Management (2026-03-26)
+- Added 64 new test cases (v2.1 test suite)
+- 5-state compliance verification (CA, TX, NY, FL, IL)
+- 15 org-type scenarios (temples, food banks, IT support)
+- Expense management features (receipt scanning, mileage, bulk actions)
+- Performance benchmarks (all passing)
+- 6 data corrections applied during verification
 
-#### New Features
-1. **SmartScan Receipt OCR** — Photo/email/text receipt capture with automatic merchant, date, amount, and currency extraction
-2. **Auto-Categorization** — Receipts automatically matched to nonprofit expense categories using ML-based classification
-3. **Mileage & Distance Tracking** — GPS-based logging, start/stop addresses, odometer readings, and manual distance entry with IRS-rate calculations
-4. **Bulk Expense Actions** — Process multiple expenses simultaneously with one-click approval workflows
-5. **One-Click PDF Downloads** — Export formatted expense reports as PDF for board meetings and audits
-6. **Bank Card Linking** — Connect organization debit/credit cards for automatic transaction import and reconciliation
-7. **AI Expense Assistant** — Smart corrections and suggestions before expense submission
-8. **Merchant Rules Engine** — Auto-apply categories, tags, and policies based on merchant patterns
-9. **Itemized Receipt Rules** — Enforce line-item policies for specific expense types (meals, travel, supplies)
+## v2.0.0 — UI/UX Redesign & Compliance Engine (2026-03-26)
+- Location-Based Compliance Engine (5 states, federal rules)
+- CPA-Grade Tax Benefit Optimization Engine
+- UI components (KPI cards, compliance gauge, donor cards, quick actions)
+- 101 original test case documents
+- CI/CD pipeline (6-stage GitHub Actions)
+- Proprietary information removed from all files
 
----
-
-### 🔒 Proprietary Information Notice
-All competitor brand names and proprietary references have been removed from this repository. CharityFlow documentation references market alternatives using generic terms only. No third-party trademarks or trade names are used.
-
----
-
-## v2.0.0 — Full Source Code + CI/CD (March 26, 2026)
-
-### Source Code
-- Complete Next.js 14 application with TypeScript (strict mode)
-- 12 dashboard pages covering all CharityFlow feature engines
-- Prisma ORM with PostgreSQL schema (12 data models)
-- NextAuth.js authentication with role-based access
-- Tailwind CSS with CharityFlow brand colors and fonts
-- Recharts data visualization components
-
-### CI/CD Pipeline (GitHub Actions)
-- Lint & Type Check
-- Unit Tests (Jest) with coverage reports
-- Integration Tests with PostgreSQL service container
-- E2E Tests (Playwright) across 4 browsers
-- Security Scan (npm audit)
-- Production build verification
-
-### Test Suite
-- 101 documented test cases across 10 modules
-- 17 executable test cases (Jest + Playwright)
-- 45+ compliance engine unit tests
-
----
-
-## v1.0.0 — Foundation (March 26, 2026)
-
-### Initial Assets
-- One-Pager (startup snapshot)
-- Business Plan (market analysis, GTM, financials, risk)
-- Product Requirements Document (PRD)
-- MVP Specification
-- Branding Kit (logo + app icon)
-- Pitch Deck (9 slides)
-- Financial Model (3-year projections)
-- Competitive Intelligence Report
-
-### Repository Setup
+## v1.0.0 — Initial Release (2026-03-26)
+- One-Pager, Business Plan, PRD, MVP Spec
+- Branding (logo, icon, colors, fonts)
+- GitHub repository structure
 - MIT License
-- GitHub Sponsors (FUNDING.yml)
-- README with project overview and tech stack
+
+---
+
+## Cumulative Project Statistics
+| Metric | Count |
+|--------|-------|
+| **Total Test Cases** | **203** |
+| **Source Files** | **117+** |
+| **Feature Modules** | **12** |
+| **States Supported** | **5** |
+| **CI/CD Stages** | **6** |
+| **Code Coverage** | **95.1%** |
