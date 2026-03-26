@@ -1,0 +1,201 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Organization {
+  id              String   @id @default(cuid())
+  name            String
+  ein             String?  @unique
+  type            String   @default("501c3")
+  state           String
+  county          String?
+  city            String
+  fiscalYearStart Int      @default(1)
+  budgetSize      String   @default("under_500k")
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  members         Member[]
+  transactions    Transaction[]
+  donors          Donor[]
+  campaigns       Campaign[]
+  events          Event[]
+  meetings        Meeting[]
+  complianceTasks ComplianceTask[]
+  form990s        Form990[]
+  categories      Category[]
+}
+
+model User {
+  id            String   @id @default(cuid())
+  email         String   @unique
+  name          String
+  passwordHash  String
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  members       Member[]
+}
+
+model Member {
+  id             String       @id @default(cuid())
+  role           String       @default("viewer")
+  notifications  Json         @default("{}")
+  joinedAt       DateTime     @default(now())
+
+  userId         String
+  user           User         @relation(fields: [userId], references: [id])
+  orgId          String
+  organization   Organization @relation(fields: [orgId], references: [id])
+
+  @@unique([userId, orgId])
+}
+
+model Transaction {
+  id          String   @id @default(cuid())
+  date        DateTime
+  description String
+  amount      Float
+  type        String
+  categoryId  String?
+  category    Category? @relation(fields: [categoryId], references: [id])
+  fundType    String   @default("unrestricted")
+  receipt     String?
+  notes       String?
+  isRecurring Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  immutableHash String?
+
+  orgId       String
+  organization Organization @relation(fields: [orgId], references: [id])
+}
+
+model Category {
+  id          String        @id @default(cuid())
+  name        String
+  plainName   String
+  type        String
+  orgId       String
+  organization Organization @relation(fields: [orgId], references: [id])
+  transactions Transaction[]
+}
+
+model Donor {
+  id            String   @id @default(cuid())
+  name          String
+  email         String?
+  phone         String?
+  totalGiven    Float    @default(0)
+  lastGiftDate  DateTime?
+  notes         String?
+  tags          String[] @default([])
+  createdAt     DateTime @default(now())
+
+  orgId         String
+  organization  Organization @relation(fields: [orgId], references: [id])
+  donations     Donation[]
+}
+
+model Donation {
+  id          String   @id @default(cuid())
+  amount      Float
+  date        DateTime
+  type        String   @default("cash")
+  receiptSent Boolean  @default(false)
+  taxReceiptId String?
+  campaignId  String?
+  campaign    Campaign? @relation(fields: [campaignId], references: [id])
+
+  donorId     String
+  donor       Donor    @relation(fields: [donorId], references: [id])
+}
+
+model Campaign {
+  id          String   @id @default(cuid())
+  name        String
+  goal        Float
+  raised      Float    @default(0)
+  startDate   DateTime
+  endDate     DateTime?
+  status      String   @default("active")
+  type        String   @default("standard")
+
+  orgId       String
+  organization Organization @relation(fields: [orgId], references: [id])
+  donations   Donation[]
+}
+
+model Event {
+  id          String   @id @default(cuid())
+  name        String
+  date        DateTime
+  venue       String?
+  budget      Float    @default(0)
+  revenue     Float    @default(0)
+  attendees   Int      @default(0)
+  status      String   @default("planning")
+  permits     Json     @default("[]")
+  vendors     Json     @default("[]")
+
+  orgId       String
+  organization Organization @relation(fields: [orgId], references: [id])
+}
+
+model Meeting {
+  id          String   @id @default(cuid())
+  title       String
+  date        DateTime
+  minutes     String?
+  attendees   String[] @default([])
+  votes       Json     @default("[]")
+  documents   Json     @default("[]")
+  status      String   @default("scheduled")
+
+  orgId       String
+  organization Organization @relation(fields: [orgId], references: [id])
+}
+
+model ComplianceTask {
+  id          String   @id @default(cuid())
+  title       String
+  description String?
+  dueDate     DateTime
+  status      String   @default("pending")
+  category    String
+  priority    String   @default("medium")
+  state       String
+  autoDetected Boolean @default(true)
+
+  orgId       String
+  organization Organization @relation(fields: [orgId], references: [id])
+}
+
+model Form990 {
+  id          String   @id @default(cuid())
+  taxYear     Int
+  formType    String
+  status      String   @default("draft")
+  data        Json     @default("{}")
+  filedAt     DateTime?
+  createdAt   DateTime @default(now())
+
+  orgId       String
+  organization Organization @relation(fields: [orgId], references: [id])
+}
+
+model AuditLog {
+  id          String   @id @default(cuid())
+  action      String
+  entity      String
+  entityId    String
+  userId      String
+  details     Json     @default("{}")
+  ipAddress   String?
+  timestamp   DateTime @default(now())
+  hash        String
+}

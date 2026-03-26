@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --brand-50: #f0fdfa;
+    --brand-100: #e1f5fe;
+    --brand-500: #1e90ff;
+    --brand-800: #1e293b;
+  }
+  body {
+    @apply bg-gray-50 text-gray-900 font-sans antialiased;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-brand-500 text-white px-4 py-2 rounded-lg font-semibold 
+           hover:bg-brand-600 transition-colors duration-200 
+           focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2;
+  }
+  .btn-secondary {
+    @apply bg-white text-brand-800 border border-gray-300 px-4 py-2 rounded-lg 
+           font-semibold hover:bg-gray-50 transition-colors duration-200;
+  }
+  .card {
+    @apply bg-white rounded-xl shadow-sm border border-gray-200 p-6;
+  }
+  .stat-card {
+    @apply card flex flex-col gap-1;
+  }
+  .input-field {
+    @apply w-full px-3 py-2 border border-gray-300 rounded-lg 
+           focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent;
+  }
+  .sidebar-link {
+    @apply flex items-center gap-3 px-3 py-2 rounded-lg text-gray-600 
+           hover:bg-brand-50 hover:text-brand-500 transition-colors;
+  }
+  .sidebar-link.active {
+    @apply bg-brand-50 text-brand-500 font-semibold;
+  }
+}
