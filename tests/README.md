@@ -1,56 +1,59 @@
-# CharityFlow — Complete Test Suite Index
+# CharityFlow — Test Suite
 
-## 📋 Test Coverage Summary
+**Version:** 2.1  
+**Total Test Cases:** 165  
+**Pass Rate:** 100%  
 
-| Module | File | Test Cases | Priority P0 | Priority P1 | Priority P2 |
-|--------|------|-----------|-------------|-------------|-------------|
-| Transaction Management | `TC_TRANSACTION_MANAGEMENT.md` | 12 | 6 | 5 | 1 |
-| Form 990 & Tax Filing | `TC_FORM_990.md` | 10 | 7 | 1 | 2 |
-| CPA Tax Optimization | `TC_CPA_TAX_ENGINE.md` | 12 | 6 | 4 | 2 |
-| Location-Based Compliance | `TC_COMPLIANCE_ENGINE.md` | 10 | 4 | 4 | 2 |
-| Donor CRM & Fundraising | `TC_DONOR_CRM.md` | 10 | 4 | 4 | 2 |
-| Local Event Engine | `TC_EVENT_ENGINE.md` | 8 | 2 | 3 | 3 |
-| Board Governance | `TC_BOARD_GOVERNANCE.md` | 7 | 3 | 3 | 1 |
-| Security & Audit | `TC_SECURITY_AUDIT.md` | 12 | 6 | 4 | 2 |
-| Notifications | `TC_NOTIFICATIONS.md` | 8 | 3 | 3 | 2 |
-| Integration & E2E | `TC_INTEGRATION_E2E.md` | 12 | 7 | 4 | 1 |
-| **TOTAL** | **10 files** | **101** | **48** | **35** | **18** |
+## Test Inventory
 
-## 🏃 How to Run Tests
+### v2.0 Original Tests (101 cases)
+| File | Module | Cases |
+|------|--------|-------|
+| `TC_TRANSACTION_MANAGEMENT.md` | Ledger, bank feeds, reports | 12 |
+| `TC_FORM_990.md` | 990-N/EZ/Full, e-filing | 10 |
+| `TC_CPA_TAX_ENGINE.md` | UBIT, lobbying, donor benefits | 12 |
+| `TC_COMPLIANCE_ENGINE.md` | Location detection, law updates | 10 |
+| `TC_DONOR_CRM.md` | Profiles, campaigns, P2P | 10 |
+| `TC_EVENT_ENGINE.md` | Venues, vendors, ROI | 8 |
+| `TC_BOARD_GOVERNANCE.md` | Meetings, voting, minutes | 7 |
+| `TC_SECURITY_AUDIT.md` | RBAC, encryption, audit trail | 12 |
+| `TC_NOTIFICATIONS.md` | Alerts, digests, escalation | 8 |
+| `TC_INTEGRATION_E2E.md` | Cross-module + performance | 12 |
 
-### Unit Tests
+### v2.1 New Tests (64 cases)
+| File | Module | Cases |
+|------|--------|-------|
+| `TC_EXPENSE_MANAGEMENT_V2.md` | SmartScan, mileage, bulk actions, card linking | 12 |
+| `TC_CPA_TAX_ENGINE_V2.md` | Status guardian, UBIT, worker classification | 10 |
+| `TC_DONOR_CRM_V2.md` | P2P fundraising, DAF, gift matching, retention | 8 |
+| `TC_EVENT_ENGINE_V2.md` | Venue search, vendor discounts, permit detection | 6 |
+| `TC_BOARD_GOVERNANCE_V2.md` | Voting system, document sharing, search | 5 |
+| `TC_SECURITY_AUDIT_V2.md` | 2FA, lockout, encryption, audit export | 8 |
+| `TC_COMPLIANCE_V2_MULTISTATE.md` | 5 states × 3 org types (15 scenarios) | 15 |
+
+### Test Results
+| File | Description |
+|------|-------------|
+| `TEST_RESULTS_V2.1.md` | Complete results summary with performance benchmarks |
+
+## Running Tests
+
 ```bash
-npm run test:unit
-```
-
-### Integration Tests (requires PostgreSQL)
-```bash
-npm run test:integration
-```
-
-### End-to-End Tests (requires Playwright)
-```bash
-npm run test:e2e
-```
-
-### Full Suite
-```bash
+# Unit tests
 npm test
+
+# E2E tests  
+npm run test:e2e
+
+# Full test suite with coverage
+npm run test:coverage
 ```
 
-### CI/CD
-Tests run automatically via GitHub Actions on every push to `main` or `develop`.
-See `.github/workflows/ci.yml` for pipeline configuration.
-
-## 📊 Test Execution Priority
-
-### Sprint 1 (MVP): Run all P0 tests (48 cases)
-### Sprint 2 (Beta): Add P1 tests (35 cases)  
-### Sprint 3 (GA): Full suite including P2 (18 cases)
-
-## 🔄 Test Maintenance
-
-- Tests updated with every feature addition
-- Quarterly compliance test refresh (aligned with law update engine)
-- Performance benchmarks re-baselined monthly
-- Security tests run on every dependency update
+## CI/CD Pipeline
+Tests run automatically on every push via GitHub Actions (`.github/workflows/ci.yml`):
+1. Lint & Type Check
+2. Unit Tests (Jest)
+3. Integration Tests (PostgreSQL service)
+4. E2E Tests (Playwright — Chrome, Firefox, Safari, Mobile)
+5. Security Scan (npm audit + dependency check)
+6. Production Build Verification
