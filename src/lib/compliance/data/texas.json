@@ -1,0 +1,80 @@
+{
+  "state": "Texas",
+  "code": "US-TX",
+  "agencies": {
+    "attorney_general": {
+      "name": "Texas Attorney General - Charitable Trusts",
+      "url": "https://texasattorneygeneral.gov/divisions/charitable-trusts"
+    },
+    "comptroller": {
+      "name": "Texas Comptroller of Public Accounts",
+      "url": "https://comptroller.texas.gov"
+    },
+    "secretary_of_state": {
+      "name": "TX Secretary of State",
+      "url": "https://sos.state.tx.us"
+    }
+  },
+  "registration": {
+    "required": false,
+    "exceptions": [
+      "Law enforcement orgs soliciting by telephone ($50 registration with OAG)",
+      "Public safety organizations and publications",
+      "Veterans organizations",
+      "Commercial telephone solicitors ($50,000 surety bond with SOS)"
+    ],
+    "notes": "Texas is a 'no-registration' state for most nonprofits"
+  },
+  "state_tax_filing": {
+    "required": false,
+    "exception": "Private foundations must send Form 990-PF to OAG simultaneously with IRS filing",
+    "notes": "No state-level Form 990 copy required for general charities"
+  },
+  "corporate_filing": {
+    "form": "Form 802 (Periodic Report)",
+    "frequency": "Every 4 years",
+    "fee": 0,
+    "notes": "No annual corporate report required"
+  },
+  "tax_exemptions": {
+    "sales_tax": {
+      "form": "AP-205",
+      "agency": "Texas Comptroller"
+    },
+    "franchise_tax": {
+      "form": "AP-205",
+      "agency": "Texas Comptroller"
+    },
+    "hotel_occupancy_tax": {
+      "form": "AP-205",
+      "agency": "Texas Comptroller"
+    }
+  },
+  "religious_exemptions": {
+    "registration_exempt": true,
+    "notes": "All nonprofits exempt from state registration (most nonprofit-friendly state)"
+  },
+  "local_requirements": {
+    "austin": {
+      "time_restrictions": true,
+      "notes": "Local jurisdictions may impose time/location/conduct restrictions"
+    },
+    "general": {
+      "notes": "Solicitors may be prohibited after dark or near schools/ATMs"
+    }
+  },
+  "recent_updates": [
+    {
+      "year": 2025,
+      "description": "HB 4752 - Property tax exemptions for charitable orgs collecting/distributing gifts/grants (passed House, pending Senate)",
+      "effective": "Pending"
+    }
+  ],
+  "audit_thresholds": [
+    {
+      "revenue_min": 0,
+      "revenue_max": null,
+      "requirement": "No state audit requirement"
+    }
+  ]
+}

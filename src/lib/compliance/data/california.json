@@ -1,0 +1,139 @@
+{
+  "state": "California",
+  "code": "US-CA",
+  "agencies": {
+    "attorney_general": {
+      "name": "CA Attorney General - Registry of Charities",
+      "url": "https://oag.ca.gov/charities"
+    },
+    "franchise_tax_board": {
+      "name": "California Franchise Tax Board",
+      "url": "https://ftb.ca.gov"
+    },
+    "secretary_of_state": {
+      "name": "CA Secretary of State",
+      "url": "https://sos.ca.gov"
+    }
+  },
+  "registration": {
+    "required": true,
+    "form": "RRF-1 (Annual Registration Renewal Fee Report)",
+    "initial_form": "CT-1 (Initial Registration)",
+    "deadline": "4 months + 15 days after fiscal year end",
+    "fee_schedule": [
+      {
+        "revenue_min": 0,
+        "revenue_max": 50000,
+        "fee": 25,
+        "form_990_required": false,
+        "alt_form": "CT-TR-1"
+      },
+      {
+        "revenue_min": 50000,
+        "revenue_max": 250000,
+        "fee": 25,
+        "form_990_required": true
+      },
+      {
+        "revenue_min": 250000,
+        "revenue_max": 1000000,
+        "fee": 50,
+        "form_990_required": true
+      },
+      {
+        "revenue_min": 1000000,
+        "revenue_max": 5000000,
+        "fee": 200,
+        "form_990_required": true
+      },
+      {
+        "revenue_min": 5000000,
+        "revenue_max": 50000000,
+        "fee": 300,
+        "form_990_required": true
+      },
+      {
+        "revenue_min": 50000000,
+        "revenue_max": 500000000,
+        "fee": 600,
+        "form_990_required": true
+      },
+      {
+        "revenue_min": 500000000,
+        "revenue_max": null,
+        "fee": 1200,
+        "form_990_required": true
+      }
+    ]
+  },
+  "state_tax_filing": {
+    "form_over_50k": "Form 199",
+    "form_under_50k": "Form 199N (e-Postcard)",
+    "deadline": "Same as IRS Form 990",
+    "ubit_form": "Form 109"
+  },
+  "corporate_filing": {
+    "form": "SI-100 (Statement of Information)",
+    "frequency": "Biennial (every 2 years)",
+    "fee": 20,
+    "month": "Incorporation month"
+  },
+  "religious_exemptions": {
+    "registration_exempt": false,
+    "notes": "Must file RRF-1 but lower scrutiny; churches exempt from Form 990 at federal level"
+  },
+  "special_filings": [
+    {
+      "form": "CT-NRP-1",
+      "purpose": "Raffle registration"
+    },
+    {
+      "form": "CT-NRP-2",
+      "purpose": "Raffle report"
+    },
+    {
+      "form": "CT-3CF",
+      "purpose": "Fundraising counsel registration"
+    },
+    {
+      "form": "CT-1CF",
+      "purpose": "Commercial fundraiser registration"
+    },
+    {
+      "form": "CT-694",
+      "purpose": "Annual financial solicitation report (>50% income from CA donors AND >$1M)"
+    }
+  ],
+  "local_requirements": {
+    "los_angeles": {
+      "notice_required": true,
+      "notice_days": 15,
+      "information_card_required": true,
+      "post_event_report": true
+    }
+  },
+  "recent_updates": [
+    {
+      "year": 2026,
+      "description": "AG Online Filing System mandatory for all new registrations",
+      "effective": "2026-01-01"
+    },
+    {
+      "year": 2025,
+      "description": "Blanket extension for renewals due Jan 7 2025 - Apr 30 2026",
+      "effective": "2025-01-07"
+    }
+  ],
+  "audit_thresholds": [
+    {
+      "revenue_min": 0,
+      "revenue_max": 2000000,
+      "requirement": "No audit required"
+    },
+    {
+      "revenue_min": 2000000,
+      "revenue_max": null,
+      "requirement": "Independent audit required"
+    }
+  ]
+}

@@ -1,0 +1,74 @@
+{
+  "jurisdiction": "Federal (IRS)",
+  "code": "US-FED",
+  "form_990_versions": [
+    {
+      "form": "990-N (e-Postcard)",
+      "threshold": "Gross receipts \u2264 $50,000",
+      "fee": 0,
+      "electronic_required": true
+    },
+    {
+      "form": "990-EZ",
+      "threshold": "Gross receipts < $200,000 AND total assets < $500,000",
+      "fee": 0,
+      "electronic_required": true
+    },
+    {
+      "form": "990 (Full)",
+      "threshold": "Gross receipts \u2265 $200,000 OR total assets \u2265 $500,000",
+      "fee": 0,
+      "electronic_required": true
+    },
+    {
+      "form": "990-PF",
+      "threshold": "Private foundations (all sizes)",
+      "fee": 0,
+      "electronic_required": true
+    },
+    {
+      "form": "990-T",
+      "threshold": "Unrelated business income \u2265 $1,000",
+      "fee": 0,
+      "electronic_required": true
+    }
+  ],
+  "deadline": "15th day of the 5th month after fiscal year end (e.g., May 15 for calendar year)",
+  "extension": "Form 8868 - automatic 6-month extension",
+  "penalty_for_missed_filing": "3 consecutive missed years = automatic revocation of tax-exempt status",
+  "public_support_test": {
+    "threshold": 33.33,
+    "description": "Must receive at least 33.33% of support from public sources to maintain public charity status",
+    "danger_zone": 30,
+    "facts_and_circumstances_threshold": 10
+  },
+  "ubit_rules": {
+    "threshold": 1000,
+    "form": "990-T",
+    "description": "Unrelated Business Income Tax applies to income from trade/business regularly carried on and not substantially related to exempt purpose"
+  },
+  "lobbying_limits": {
+    "501h_election": {
+      "description": "Organizations can elect 501(h) to use expenditure test"
+    },
+    "expenditure_test": [
+      {
+        "exempt_purpose_expenditures_max": 500000,
+        "lobbying_limit_pct": 20
+      },
+      {
+        "exempt_purpose_expenditures_max": 1000000,
+        "lobbying_limit_pct": 15
+      },
+      {
+        "exempt_purpose_expenditures_max": 1500000,
+        "lobbying_limit_pct": 10
+      },
+      {
+        "exempt_purpose_expenditures_max": 17000000,
+        "lobbying_limit_pct": 5
+      }
+    ],
+    "absolute_ceiling": 1000000
+  }
+}

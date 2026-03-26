@@ -1,0 +1,85 @@
+{
+  "state": "New York",
+  "code": "US-NY",
+  "agencies": {
+    "attorney_general": {
+      "name": "NY Attorney General - Charities Bureau",
+      "url": "https://charitiesnys.com"
+    },
+    "department_of_state": {
+      "name": "NY Department of State",
+      "url": "https://dos.ny.gov"
+    }
+  },
+  "registration": {
+    "required": true,
+    "initial_form": "CHAR410 (Registration Statement for Charitable Organizations)",
+    "annual_form": "CHAR500 (Annual Filing for Charitable Organizations)",
+    "deadline": "4 months + 15 days after fiscal year end",
+    "fee_schedule": [
+      {
+        "revenue_min": 0,
+        "revenue_max": 250000,
+        "fee": 25
+      },
+      {
+        "revenue_min": 250000,
+        "revenue_max": 500000,
+        "fee": 50
+      },
+      {
+        "revenue_min": 500000,
+        "revenue_max": 1000000,
+        "fee": 100
+      },
+      {
+        "revenue_min": 1000000,
+        "revenue_max": 5000000,
+        "fee": 250
+      },
+      {
+        "revenue_min": 5000000,
+        "revenue_max": null,
+        "fee": 750
+      }
+    ],
+    "dual_filing": {
+      "threshold": 250000,
+      "requirement": "Must also file CHAR500 with NY Dept of State if revenue >$250K"
+    }
+  },
+  "religious_exemptions": {
+    "registration_exempt": true,
+    "statute": "EPTL \u00a78-1.4",
+    "notes": "Religious orgs exempt from CHAR410/CHAR500 filing"
+  },
+  "audit_thresholds": [
+    {
+      "revenue_min": 0,
+      "revenue_max": 250000,
+      "requirement": "No audit required"
+    },
+    {
+      "revenue_min": 250000,
+      "revenue_max": 500000,
+      "requirement": "CPA review required"
+    },
+    {
+      "revenue_min": 500000,
+      "revenue_max": 750000,
+      "requirement": "CPA review or audit"
+    },
+    {
+      "revenue_min": 750000,
+      "revenue_max": null,
+      "requirement": "Independent CPA audit required"
+    }
+  ],
+  "recent_updates": [
+    {
+      "year": 2025,
+      "description": "EPTL filing fee updated: $50 base + Article 7-A $25 = $75 minimum for charitable orgs",
+      "effective": "2025-01-01"
+    }
+  ]
+}
