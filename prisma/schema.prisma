@@ -1,0 +1,115 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Organization {
+  id          String   @id @default(cuid())
+  name        String
+  ein         String?  @unique
+  type501c    String   @default("501(c)(3)")
+  state       String
+  county      String?
+  city        String?
+  budget      Float    @default(0)
+  fiscalYearEnd String @default("December")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  users       User[]
+  transactions Transaction[]
+  donors      Donor[]
+  events      Event[]
+  meetings    Meeting[]
+  utilityProviders UtilityProvider[]
+  chatSessions ChatSession[]
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String
+  role      String   @default("staff")
+  orgId     String
+  org       Organization @relation(fields: [orgId], references: [id])
+  createdAt DateTime @default(now())
+}
+
+model Transaction {
+  id          String   @id @default(cuid())
+  orgId       String
+  org         Organization @relation(fields: [orgId], references: [id])
+  type        String
+  amount      Float
+  description String
+  category    String
+  date        DateTime
+  status      String   @default("active")
+  createdBy   String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Donor {
+  id          String   @id @default(cuid())
+  orgId       String
+  org         Organization @relation(fields: [orgId], references: [id])
+  name        String
+  email       String?
+  phone       String?
+  totalGiven  Float    @default(0)
+  firstGift   DateTime?
+  lastGift    DateTime?
+  level       String   @default("new")
+  createdAt   DateTime @default(now())
+}
+
+model Event {
+  id          String   @id @default(cuid())
+  orgId       String
+  org         Organization @relation(fields: [orgId], references: [id])
+  name        String
+  date        DateTime
+  venue       String?
+  budget      Float    @default(0)
+  raised      Float    @default(0)
+  status      String   @default("planning")
+  createdAt   DateTime @default(now())
+}
+
+model Meeting {
+  id          String   @id @default(cuid())
+  orgId       String
+  org         Organization @relation(fields: [orgId], references: [id])
+  title       String
+  date        DateTime
+  minutes     String?
+  attendees   String[]
+  status      String   @default("scheduled")
+  createdAt   DateTime @default(now())
+}
+
+model UtilityProvider {
+  id          String   @id @default(cuid())
+  orgId       String
+  org         Organization @relation(fields: [orgId], references: [id])
+  name        String
+  type        String
+  accountNum  String?
+  active      Boolean  @default(true)
+  createdAt   DateTime @default(now())
+}
+
+model ChatSession {
+  id          String   @id @default(cuid())
+  orgId       String
+  org         Organization @relation(fields: [orgId], references: [id])
+  status      String   @default("active")
+  intent      String?
+  rating      Int?
+  startedAt   DateTime @default(now())
+  endedAt     DateTime?
+}
