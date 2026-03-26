@@ -1,0 +1,77 @@
+{
+  "state": "Oklahoma",
+  "stateCode": "OK",
+  "lastUpdated": "2026-03-26",
+  "registration": {
+    "required": false,
+    "agency": "Oklahoma Secretary of State",
+    "notes": "Oklahoma does not require general charitable solicitation registration. Only specific categories (veterans, law enforcement telephone solicitors) must register.",
+    "fee": 0,
+    "renewalFrequency": "none"
+  },
+  "annualFiling": {
+    "required": true,
+    "form": "Annual Certificate",
+    "agency": "Oklahoma Secretary of State",
+    "fee": 0,
+    "deadline": "Anniversary of incorporation",
+    "notes": "Must file annual certificate with registered agent and address updates"
+  },
+  "taxExemptions": {
+    "salesTax": {
+      "available": true,
+      "form": "Application via Oklahoma Tax Commission",
+      "notes": "501(c)(3) organizations may apply for sales tax exemption"
+    },
+    "propertyTax": {
+      "available": true,
+      "notes": "Property used exclusively for charitable purposes may be exempt"
+    },
+    "incomeTax": {
+      "available": true,
+      "notes": "Oklahoma conforms to federal tax-exempt status for qualifying organizations"
+    }
+  },
+  "form990": {
+    "stateCopyRequired": false,
+    "notes": "Oklahoma does not require nonprofits to file copies of Form 990 with any state agency (unlike NY or CA)"
+  },
+  "auditRequirements": {
+    "threshold": null,
+    "notes": "No state-mandated audit threshold for nonprofits. Board discretion."
+  },
+  "religiousExemptions": {
+    "exempt": true,
+    "scope": "full",
+    "statute": "Oklahoma Constitution Article 1 Section 2",
+    "notes": "Religious organizations are fully exempt from registration and most state reporting"
+  },
+  "localRegulations": {
+    "oklahomaCity": {
+      "solicitation": "Permit may be required for door-to-door solicitation",
+      "events": "Special event permits through city clerk",
+      "notes": "Check with OKC City Clerk for specific event requirements"
+    },
+    "tulsa": {
+      "solicitation": "Similar to OKC — local permit may apply",
+      "events": "Parks and public space events require Tulsa Parks Department permit",
+      "notes": "Food-related events need Tulsa Health Department approval"
+    }
+  },
+  "recentUpdates": [
+    {
+      "date": "2025-05-01",
+      "description": "HB 4752 — Property tax exemption expansion for charitable gift distribution organizations (passed House, awaiting Senate)",
+      "impact": "If passed, expands property tax exemptions for nonprofits distributing gifts/grants",
+      "status": "pending"
+    }
+  ],
+  "complianceNotes": [
+    "Oklahoma is one of the most nonprofit-friendly states — minimal registration requirements",
+    "No state charitable solicitation registration for most nonprofits",
+    "No state audit mandate",
+    "Religious organizations fully exempt",
+    "Annual certificate with Secretary of State is the primary state obligation",
+    "Federal Form 990 filing remains required regardless of state rules"
+  ]
+}
